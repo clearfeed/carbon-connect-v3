@@ -2,14 +2,14 @@ import { FileTabColumns, IntegrationName } from "../typing/shared";
 
 export enum ENV {
   PRODUCTION = "PRODUCTION",
+  STAGING = "STAGING",
   DEVELOPMENT = "DEVELOPMENT",
-  LOCAL = "LOCAL",
 }
 
 export const BASE_URL = {
-  [ENV.PRODUCTION]: "https://api.carbon.ai",
-  [ENV.DEVELOPMENT]: "https://api.dev.carbon.ai",
-  [ENV.LOCAL]: "http://localhost:8000",
+  [ENV.PRODUCTION]: "https://staging-api.aws.clearfeed.app/carbon",
+  [ENV.STAGING]: "https://staging-api.aws.clearfeed.app/carbon",
+  [ENV.DEVELOPMENT]: "https://staging-api.aws.clearfeed.app/carbon",
 };
 
 export const onSuccessEvents = {
