@@ -7,9 +7,9 @@ export enum ENV {
 }
 
 export const BASE_URL = {
-  [ENV.PRODUCTION]: "https://staging-api.aws.clearfeed.app/carbon",
-  [ENV.STAGING]: "https://staging-api.aws.clearfeed.app/carbon",
-  [ENV.DEVELOPMENT]: "https://staging-api.aws.clearfeed.app/carbon",
+  [ENV.PRODUCTION]: "https://staging.aws.clearfeed.app/api/carbon",
+  [ENV.STAGING]: "https://staging.aws.clearfeed.app/api/carbon",
+  [ENV.DEVELOPMENT]: "https://staging.aws.clearfeed.app/api/carbon",
 };
 
 export const onSuccessEvents = {
