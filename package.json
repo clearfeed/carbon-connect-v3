@@ -1,6 +1,6 @@
 {
   "name": "@clearfeed/carbon-connect",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.cjs",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
