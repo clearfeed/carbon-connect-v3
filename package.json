@@ -1,12 +1,16 @@
 {
-  "name": "carbon-connect",
-  "version": "3.0.34",
+  "name": "@clearfeed/carbon-connect",
+  "version": "1.0.0",
   "main": "dist/index.cjs",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c --watch"
+    "dev": "rollup -c --watch",
+    "prepublish": "yarn build"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "author": "",
   "type": "module",
@@ -59,6 +63,9 @@
     "tailwind-merge": "^2.3.0"
   },
   "dependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
     "date-fns": "^3.6.0",
     "react-circular-progressbar": "^2.1.0",
     "react-day-picker": "^8.10.1",

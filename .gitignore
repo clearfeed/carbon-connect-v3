@@ -6,3 +6,4 @@ yarn.lock
 .parcel-cache
 dist
 .DS_Store
+.npmrc

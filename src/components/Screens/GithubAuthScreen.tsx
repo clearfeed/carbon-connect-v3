@@ -11,9 +11,7 @@ import {
 } from "../../typing/shared";
 import { useCarbon } from "../../context/CarbonContext";
 import {
-  generateRequestId,
   getBaseURL,
-  getConnectRequestProps,
   getIntegrationDisclaimer,
 } from "../../utils/helper-functions";
 import { ENV } from "../../constants/shared";
@@ -47,7 +45,7 @@ export default function GitbookScreen({
     orgName,
     showFilesTab,
     apiURL,
-    dataSourceTags
+    dataSourceTags,
   } = carbonProps;
   const shouldShowFilesTab = processedIntegration?.showFilesTab ?? showFilesTab;
 
@@ -82,7 +80,7 @@ export default function GitbookScreen({
         username: username,
         access_token: ghToken,
         sync_source_items: processedIntegration?.syncSourceItems || false,
-        data_source_tags: dataSourceTags || {}
+        data_source_tags: dataSourceTags || {},
       };
 
       const response = await authenticatedFetch(
@@ -177,9 +175,34 @@ export default function GitbookScreen({
           placeholder="Token"
           value={ghToken}
           onChange={(e) => setGHToken(e.target.value)}
-          className="cc-mb-32"
+          className="cc-mb-10"
         />
+        <div className="cc-text-base dark:cc-text-dark-text-white cc-mb-10">
+          <p>Note: Steps to Create a GitHub Access Token</p>
+          <ol className="cc-list-decimal cc-list-inside">
+            <li>
+              Visit{" "}
+              <a
+                href="https://github.com/settings/personal-access-tokens/new"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cc-text-info_em"
+              >
+                https://github.com/settings/personal-access-tokens/new
+              </a>
+            </li>
+            <li>
+              Enter the required details and set the repository access to either
+              all or specific.
+            </li>
+            <li>
+              Under repository permission, give read-only access to "Contents".
+            </li>
+            <li>Generate the token.</li>
+          </ol>
+        </div>
       </div>
+
       <DialogFooter>
         <div className="cc-flex cc-mb-4 cc-gap-2 cc-items-center">
           <img
