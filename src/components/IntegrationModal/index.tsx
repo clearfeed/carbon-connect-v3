@@ -9,7 +9,6 @@ import { useCarbon } from "../../context/CarbonContext";
 import { ActiveStep, IntegrationName } from "../../typing/shared";
 
 import LocalFilesScreen from "../SystemFileUpload/LocalFilesScreen";
-import ConnectScreen from "@components/CarbonConnect/ConnectScreen";
 
 export interface ModalProps {}
 
@@ -47,6 +46,7 @@ export function IntegrationModal({ children }: { children: ReactNode }) {
     setLastModifications,
     apiURL,
     dataSourceTagsFilterQuery,
+    entryPointIntegrationObject,
   } = useCarbon();
 
   const [activeIntegrations, setActiveIntegrations] = useState<
@@ -141,13 +141,19 @@ export function IntegrationModal({ children }: { children: ReactNode }) {
     activeIntegrationsRef.current = activeIntegrations;
   }, [activeIntegrations, carbonActive]);
 
+  /**
+   * Skip the connect screen, since the tnc is not same as the ClearFeed's tnc
+   * and the user is already logged in
+   */
   useEffect(() => {
-    if (whiteLabelingData?.remove_branding && entryPoint) {
-      setActiveStep(entryPoint);
-    } else {
-      setActiveStep("CONNECT");
+    if (activeStep === "CONNECT") {
+      if (entryPointIntegrationObject?.active) {
+        setActiveStep(entryPointIntegrationObject.data_source_type);
+      } else {
+        setActiveStep("INTEGRATION_LIST");
+      }
     }
-  }, [whiteLabelingData]);
+  }, [entryPointIntegrationObject]);
 
   const isWhiteLabeledEntryPoint =
     entryPoint && whiteLabelingData?.remove_branding;
@@ -155,12 +161,7 @@ export function IntegrationModal({ children }: { children: ReactNode }) {
   const showActiveContent = (activeStep: ActiveStep) => {
     switch (activeStep) {
       case "CONNECT":
-        return (
-          <ConnectScreen
-            onPrimaryButtonClick={(step) => setActiveStep(step)}
-            setCarbonActive={setCarbonActive}
-          />
-        );
+        return null;
       case "INTEGRATION_LIST":
         return (
           <IntegrationList
