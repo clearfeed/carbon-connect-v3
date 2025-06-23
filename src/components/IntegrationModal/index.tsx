@@ -9,6 +9,7 @@ import { useCarbon } from "../../context/CarbonContext";
 import { ActiveStep, IntegrationName } from "../../typing/shared";
 
 import LocalFilesScreen from "../SystemFileUpload/LocalFilesScreen";
+import ConnectScreen from "@components/CarbonConnect/ConnectScreen";
 
 export interface ModalProps {}
 
@@ -153,7 +154,7 @@ export function IntegrationModal({ children }: { children: ReactNode }) {
         setActiveStep("INTEGRATION_LIST");
       }
     }
-  }, [entryPointIntegrationObject]);
+  }, [entryPointIntegrationObject, activeStep]);
 
   const isWhiteLabeledEntryPoint =
     entryPoint && whiteLabelingData?.remove_branding;
@@ -161,7 +162,12 @@ export function IntegrationModal({ children }: { children: ReactNode }) {
   const showActiveContent = (activeStep: ActiveStep) => {
     switch (activeStep) {
       case "CONNECT":
-        return null;
+        return (
+          <ConnectScreen
+            onPrimaryButtonClick={(step) => setActiveStep(step)}
+            setCarbonActive={setCarbonActive}
+          />
+        );
       case "INTEGRATION_LIST":
         return (
           <IntegrationList
