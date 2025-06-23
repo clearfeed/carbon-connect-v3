@@ -166,11 +166,6 @@ export function IntegrationModal({ children }: { children: ReactNode }) {
         return (
           <IntegrationList
             setActiveStep={setActiveStep}
-            handleBack={
-              isWhiteLabeledEntryPoint
-                ? () => manageModalOpenState(false)
-                : () => setActiveStep("CONNECT")
-            }
             onCloseModal={() => manageModalOpenState(false)}
             activeIntegrations={activeIntegrations}
           />
