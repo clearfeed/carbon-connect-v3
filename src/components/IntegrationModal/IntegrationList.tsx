@@ -1,16 +1,10 @@
 import React, { useState } from "react";
-import {
-  emptyFunction,
-  getIntegrationName,
-  isEmpty,
-} from "@utils/helper-functions";
+import { emptyFunction, getIntegrationName } from "@utils/helper-functions";
 import SearchIcon from "@assets/svgIcons/search-icon.svg";
-import { INTEGRATIONS_LIST } from "@utils/integrationModalconstants";
 import {
   DialogHeader,
   DialogTitle,
 } from "@components/common/design-system/Dialog";
-import BackIcon from "@assets/svgIcons/back-icon.svg";
 import CrossIcon from "@assets/svgIcons/cross-icon.svg";
 import { Input } from "@components/common/design-system/Input";
 import { Button } from "@components/common/design-system/Button";
@@ -35,14 +29,12 @@ export interface IntegrationListProps {
   activeIntegrations: IntegrationAPIResponse[];
   setActiveStep?: (stepId: ActiveStep) => void;
   onCloseModal: () => void;
-  handleBack: () => void;
 }
 
 function IntegrationList({
   activeIntegrations,
   setActiveStep = emptyFunction,
   onCloseModal,
-  handleBack,
 }: IntegrationListProps) {
   const [searchText, setSearchText] = useState<string>("");
   const {
@@ -67,17 +59,6 @@ function IntegrationList({
         onCloseModal={() => onCloseModal()}
       >
         <div className="cc-flex-grow cc-flex cc-gap-3 cc-items-center">
-          <Button
-            variant="neutral-white"
-            className="cc-pr-1 cc-h-10 cc-w-auto cc-absolute sm:cc-relative cc-p-0 cc-border-none"
-            onClick={() => handleBack()}
-          >
-            <img
-              src={BackIcon}
-              alt="Lock"
-              className="cc-h-[18px] cc-w-[18px] dark:cc-invert-[1] dark:cc-hue-rotate-180"
-            />
-          </Button>
           <DialogTitle
             justifyModification={true}
             className="cc-flex-grow sm:cc-text-left"
