@@ -143,7 +143,7 @@ export function IntegrationModal({ children }: { children: ReactNode }) {
   }, [activeIntegrations, carbonActive]);
 
   /**
-   * Skip the connect screen, since the tnc is not same as the ClearFeed's tnc
+   * Skip the connect screen, since the tnc now is same as the ClearFeed's tnc
    * and the user is already logged in
    */
   useEffect(() => {
